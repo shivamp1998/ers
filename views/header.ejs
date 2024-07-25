@@ -1,0 +1,47 @@
+<header class="mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">ERS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <% console.log("user", user) %>
+          <% if (user && user.role === 'Admin') { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/admin">Admin Panel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signout">Logout</a>
+            </li>
+          <% } else if (user && user.role === 'Employee') { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/employee">Employee Panel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signout">Logout</a>
+            </li>
+          <% } else { %>
+            <% if (req.path === '/') { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/sign-up">Sign Up</a>
+              </li>
+            <% } else if (req.path === '/sign-up') { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Login</a>
+              </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sign-up">Sign Up</a>
+              </li>
+            <% } %>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
